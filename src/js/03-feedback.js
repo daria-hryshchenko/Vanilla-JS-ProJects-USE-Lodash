@@ -1,58 +1,46 @@
-import throttle from "lodash.throttle";
+import throttle from 'lodash.throttle';
 
+const STORAGE_KEY = 'feedback-form-state';
 const contactFormEl = document.querySelector('.feedback-form');
-const LOCAL_STORAGE_INFO = 'feedback-form-state';
-const userInfo = {};
 
 
-contactFormEl.addEventListener(
-  'input',
-  throttle(event => {
-    const {
-      target
-    } = event;
+const {
+  elements: {
+    email: emailEl,
+    message: textAreaEl
+  }
+} = contactFormEl;
 
-    const fieldValue = target.value;
-    const fieldName = target.name;
+populateTextArea();
 
-    userInfo[fieldName] = fieldValue;
-    localStorage.setItem(LOCAL_STORAGE_INFO, JSON.stringify(userInfo));
-  }, 500)
-);
+contactFormEl.addEventListener('submit', onFormSubmit);
+contactFormEl.addEventListener('input', throttle(onFormInput, 500));
 
-contactFormEl.addEventListener('submit', event => {
+function onFormSubmit(event) {
   event.preventDefault();
-  console.log(userInfo);
-  contactFormEl.reset();
-  localStorage.removeItem(LOCAL_STORAGE_INFO);
-});
+  console.log({
+    email: emailEl.value,
+    message: textAreaEl.value
+  })
+  event.currentTarget.reset();
+  localStorage.removeItem(STORAGE_KEY);
+}
 
+function onFormInput() {
 
-
-const save = (key, value) => {
-  try {
-    const serializedState = JSON.stringify(value);
-
-    localStorage.setItem(key, serializedState);
-  } catch (error) {
-    console.error('Set state error: ', error.message);
+  const formData = {
+    email: emailEl.value,
+    message: textAreaEl.value
   }
-};
 
-const load = key => {
-  try {
-    const serializedState = localStorage.getItem(key);
-    return serializedState === null ? undefined : JSON.parse(serializedState);
-  } catch (error) {
-    console.error('Get state error: ', error.message);
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(formData));
+}
+
+function populateTextArea() {
+  const savedMessage = localStorage.getItem(STORAGE_KEY);
+  if (savedMessage) {
+    let dataObject = JSON.parse(savedMessage);
+    emailEl.value = dataObject.email;
+    textAreaEl.value = dataObject.message;
   }
-};
-
-
-const remove = key => {
-  try {
-    localStorage.removeItem(key);
-  } catch (error) {
-    console.log('Remove item error: ', error.message);
-  }
-};
+}
