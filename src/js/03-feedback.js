@@ -1,6 +1,4 @@
-import {
-  throttle
-} from 'lodash';
+import throttle from "lodash.throttle";
 
 const contactFormEl = document.querySelector('.feedback-form');
 const LOCAL_STORAGE_INFO = 'feedback-form-state';
