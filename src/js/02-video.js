@@ -6,9 +6,7 @@ const player = new Player(vimeoPlayerEl);
 
 player.on('timeupdate', throttle(event => {
   localStorage.setItem('videoplayer-current-time', event.seconds);
-}, 1000)).catch(err => {
-  console.warn(err);
-});
+}, 1000));
 
 player.setCurrentTime(localStorage.getItem('videoplayer-current-time')).catch(err => {
   console.warn(err);
