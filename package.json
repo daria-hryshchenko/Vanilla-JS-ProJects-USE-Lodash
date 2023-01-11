@@ -2,10 +2,10 @@
   "name": "parcel-project-template",
   "version": "2.0.0",
   "description": "",
-  "homepage": "https://daria-hryshchenko.github.io/goit-js-hw-08",
+  "homepage": "https://daria-hryshchenko.github.io/Vanilla-JS-ProJects-USE-Lodash/",
   "scripts": {
     "start": "parcel src/*.html",
-    "build": "parcel build src/*.html --public-url /goit-js-hw-08/"
+    "build": "parcel build src/*.html --public-url /Vanilla-JS-ProJects-USE-Lodash/"
   },
   "repository": {
     "type": "git",
