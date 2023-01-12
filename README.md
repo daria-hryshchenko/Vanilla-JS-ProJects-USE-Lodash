@@ -12,7 +12,4 @@ Homework 📚
 
 ![first screen](https://github.com/daria-hryshchenko/Vanilla-JS-ProJects-USE-Lodash/blob/main/video-player.png)
 
-![first screen](https://github.com/daria-hryshchenko/GalleryItems-USE-BasicLightbox-SimpleLightbox/blob/main/image_gallery.png)
-
-
 ![first screen](https://github.com/daria-hryshchenko/Vanilla-JS-ProJects-USE-Lodash/blob/main/feedback-form.png)
